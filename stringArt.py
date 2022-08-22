@@ -2,19 +2,20 @@ from math import sin,cos
 from random import randint
 from PIL import Image
 
-image = Image.open("chad.png") # open colour image
+image = Image.open("input.png") # Input image
 image = image.convert('L') # convert image to black and white
 img = image.load()
 blank = Image.new('L', image.size, (255))
 canv = blank.load()
 
 PI = 3.14159265
-PINS = 212
-WEIGHT = 24
+PINS = 212 #Number of pins
+WEIGHT = 24 #Amount that the colour changes on each pass of 'string'
+
 length = 0
-diam = 17/12
+DIAM = 17/12 #Real life diameter of art piece
 radius = min(image.size[0],image.size[1])//2-2
-scale = diam/(2*radius)
+scale = DIAM/(2*radius)
 
 def line(pin1,pin2,pix):
     global length
@@ -68,7 +69,7 @@ for pin in pins:
         for j in range (-1,2):
             canv[pin[0]+i,pin[1]+j] = 0
 
-ring.save("temp.png")
+ring.save("template.png")
 
 with open("instructions.txt", "w") as f:
     tally = 0
